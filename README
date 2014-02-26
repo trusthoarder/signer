@@ -1,0 +1,27 @@
+Signer
+======
+
+TODO: Get them a signing key.
+
+1. If the user has a verified public key, go to (8).
+
+2. Prompt user for search criteria.
+3. Search pool, present results.
+4. Confirm selection.
+5. Download public key.
+6. Send encrypted email to UIDs with verification tokens (plus URL).
+7a. User selects unverified UID, enters token.
+7b. User follows URL, UID is verified.
+
+8a. View list of keys that you have not yet signed and pushed.
+8b. Scan a QR code; key is added to list and encrypted email is sent to
+your primary UID.
+8c. Show your fingerprint's QR code.
+
+Security
+--------
+
+- Public key is stored on device, signed.
+- List of keys to sign stored on device, signed.
+- HKP is sent over SSL.
+- UI lock with PIN.
