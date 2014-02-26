@@ -4,5 +4,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-  
+
+    <TextView android:id="@+id/keyid"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dip"
+      android:textAppearance="?android:attr/textAppearanceListItem"
+      />
+
+    <TextView android:id="@+id/name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/keyid"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      />
+
+    <TextView android:id="@+id/email"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/name"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      />
+
 </LinearLayout>
