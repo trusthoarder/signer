@@ -1,8 +1,6 @@
 Signer
 ======
 
-TODO: Get them a signing key.
-
 1. If the user has a verified public key, go to (8).
 
 2. Prompt user for search criteria.
@@ -14,14 +12,16 @@ TODO: Get them a signing key.
 7b. User follows URL, UID is verified.
 
 8a. View list of keys that you have not yet signed and pushed.
-8b. Scan a QR code; key is added to list and encrypted email is sent to
-your primary UID.
 8c. Show your fingerprint's QR code.
+8b. Scan a QR code; key is added to list.
+8b.i. If the user has somehow given us their signing key, send them an
+      encrypted, signed email with a script they can run to import and
+      sign all the keys.
 
 Security
 --------
 
-- Public key is stored on device, signed.
-- List of keys to sign stored on device, signed.
+- Public key is stored on device, unencrypted, signed.
+- List of keys to sign stored on device, encrypted, signed.
 - HKP is sent over SSL.
 - UI lock with PIN.
