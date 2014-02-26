@@ -2,4 +2,6 @@
 <resources>
   <string name="app_name">Signer</string>
   <string name="search_results_title">PGP search results</string>
+  <string name="search">Search</string>
+  <string name="search_string">Search for a key</string>
 </resources>
