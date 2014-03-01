@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SearchResultsActivity extends ListActivity {
+  public final static String KEYID = "com.mike_burns.signer.KEYID";
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -31,6 +35,16 @@ public class SearchResultsActivity extends ListActivity {
     setListAdapter(adapter);
 
     setContentView(R.layout.search_results);
+  }
+
+  @Override
+  protected void onListItemClick(ListView l, View v, int position, long id) {
+    Map<String, String> item = (Map<String, String>)getListView().getItemAtPosition(position);
+
+    Intent intent = new Intent(this, KeyActivity.class);
+    intent.putExtra(KEYID, item.get("KEYID"));
+
+    startActivity(intent);
   }
 
   private List<Map<String, String>> dummyData(String search_string) {

@@ -19,5 +19,11 @@
       </intent-filter>
     </activity>
 
+    <activity android:name="KeyActivity"
+      android:label="@string/key_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+
   </application>
 </manifest>
