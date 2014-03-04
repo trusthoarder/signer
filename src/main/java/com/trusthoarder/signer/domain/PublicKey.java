@@ -5,7 +5,7 @@ import org.spongycastle.openpgp.PGPPublicKeyRing;
 
 /** The domain layer mapping of a public PGP key. Backed by a regular
  * bouncy castle PGPPublicKeyRing. */
-public class PublicKey extends PublicKeyMeta {
+public class PublicKey extends PublicKeyMeta implements Key {
 
   private final PGPPublicKeyRing rawKeyRing;
 

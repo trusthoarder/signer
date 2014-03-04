@@ -6,7 +6,25 @@
     >
 
 <TextView
-    android:id="@+id/keyid"
+    android:id="@+id/keyScreenKeyId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:ems="10" />
+
+<TextView
+    android:id="@+id/keyScreenFingerprint"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:ems="10" />
+
+<ImageView
+    android:id="@+id/qrCode"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"

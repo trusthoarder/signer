@@ -77,7 +77,7 @@ public class SearchResultsActivity extends ListActivity
         PublicKeyMeta item = (PublicKeyMeta) getListView().getItemAtPosition( position );
 
         Intent intent = new Intent( this, KeyActivity.class );
-        intent.putExtra( KEYID, item.keyId() );
+        intent.putExtra( KEYID, item.keyIdString() );
 
         startActivity( intent );
     }
