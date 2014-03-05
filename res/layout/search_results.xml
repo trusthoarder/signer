@@ -12,7 +12,7 @@
   
   <TextView 
       android:id="@android:id/empty"
-      android:text="Mike Burns"
+      android:text="Please wait..."
       android:layout_width="wrap_content"
       android:layout_height="wrap_content" />
   

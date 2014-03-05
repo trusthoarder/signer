@@ -1,3 +1,7 @@
+signer.iml
+.idea
+gen-external-apklibs
+
 # Built application files
 *.apk
 *.ap_

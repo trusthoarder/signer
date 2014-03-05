@@ -12,17 +12,10 @@
       android:textAppearance="?android:attr/textAppearanceListItem"
       />
 
-    <TextView android:id="@+id/name"
+    <TextView android:id="@+id/uid"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/keyid"
-      android:textAppearance="?android:attr/textAppearanceSmall"
-      />
-
-    <TextView android:id="@+id/email"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/name"
       android:textAppearance="?android:attr/textAppearanceSmall"
       />
 
