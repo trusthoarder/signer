@@ -1,11 +1,11 @@
-package com.mike_burns.signer.application;
+package com.trusthoarder.signer.application;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.TextView;
-import com.mike_burns.signer.R;
+import com.trusthoarder.signer.R;
 
 public class KeyActivity extends Activity {
   @Override

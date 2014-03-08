@@ -1,14 +1,14 @@
-package com.mike_burns.signer.application;
+package com.trusthoarder.signer.application;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
-import com.mike_burns.signer.R;
+import com.trusthoarder.signer.R;
 
 public class SigningActivity extends Activity {
-  public final static String SEARCH_STRING = "com.mike_burns.signer.SEARCH_STRING";
+  public final static String SEARCH_STRING = "com.trusthoarder.signer.SEARCH_STRING";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {

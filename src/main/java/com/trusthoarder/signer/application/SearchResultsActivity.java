@@ -1,4 +1,4 @@
-package com.mike_burns.signer.application;
+package com.trusthoarder.signer.application;
 
 import java.util.List;
 
@@ -10,16 +10,16 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.mike_burns.signer.R;
-import com.mike_burns.signer.domain.KeyRepository;
-import com.mike_burns.signer.domain.PGPKey;
-import com.mike_burns.signer.infrastructure.SafeAsyncTask;
-import com.mike_burns.signer.infrastructure.ui.BasicAdapter;
+import com.trusthoarder.signer.R;
+import com.trusthoarder.signer.domain.KeyRepository;
+import com.trusthoarder.signer.domain.PGPKey;
+import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
+import com.trusthoarder.signer.infrastructure.ui.BasicAdapter;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class SearchResultsActivity extends ListActivity
 {
-    public final static String KEYID = "com.mike_burns.signer.KEYID";
+    public final static String KEYID = "com.trusthoarder.signer.KEYID";
     private final KeyRepository keys = new KeyRepository(
         "http://pgp.mit.edu", new DefaultHttpClient() );
 

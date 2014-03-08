@@ -1,4 +1,4 @@
-package com.mike_burns.signer.domain;
+package com.trusthoarder.signer.domain;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;

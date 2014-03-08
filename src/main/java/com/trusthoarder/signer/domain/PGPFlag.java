@@ -1,4 +1,4 @@
-package com.mike_burns.signer.domain;
+package com.trusthoarder.signer.domain;
 
 public enum PGPFlag
 {
