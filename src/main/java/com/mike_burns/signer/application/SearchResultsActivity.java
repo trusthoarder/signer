@@ -1,4 +1,4 @@
-package com.mike_burns.signer;
+package com.mike_burns.signer.application;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.mike_burns.signer.R;
 import com.mike_burns.signer.domain.KeyRepository;
 import com.mike_burns.signer.domain.PGPKey;
 import com.mike_burns.signer.infrastructure.SafeAsyncTask;

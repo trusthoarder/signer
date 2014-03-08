@@ -1,10 +1,11 @@
-package com.mike_burns.signer;
+package com.mike_burns.signer.application;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import com.mike_burns.signer.R;
 
 public class SigningActivity extends Activity {
   public final static String SEARCH_STRING = "com.mike_burns.signer.SEARCH_STRING";

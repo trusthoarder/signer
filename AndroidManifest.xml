@@ -8,7 +8,7 @@
 
   <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
 
-    <activity android:name="SigningActivity"
+    <activity android:name=".application.SigningActivity"
       android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -16,13 +16,13 @@
       </intent-filter>
     </activity>
 
-    <activity android:name="SearchResultsActivity"
+    <activity android:name=".application.SearchResultsActivity"
       android:label="@string/search_results_title">
       <intent-filter>
       </intent-filter>
     </activity>
 
-    <activity android:name="KeyActivity"
+    <activity android:name=".application.KeyActivity"
       android:label="@string/key_title">
       <intent-filter>
       </intent-filter>
