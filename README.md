@@ -1,5 +1,6 @@
-Signer
-======
+[![Build Status](https://travis-ci.org/trusthoarder/signer.png?branch=master)](https://travis-ci.org/trusthoarder/signer)
+
+# Signer
 
 1. If the user has a verified public key, go to (8).
 
@@ -18,17 +19,15 @@ Signer
       encrypted, signed email with a script they can run to import and
       sign all the keys.
 
-Security
---------
+## Security
 
-- Public key is stored on device, unencrypted, signed.
-- List of keys to sign stored on device, encrypted, signed.
-- HKP is sent over SSL.
-- UI lock with PIN.
+* Public key is stored on device, unencrypted, signed.
+* List of keys to sign stored on device, encrypted, signed.
+* HKP is sent over SSL.
+* UI lock with PIN.
 
 
-Building & Testing
-------------------
+## Building & Testing
 
 Signer is built using the Maven build system. To build the distributable .apk:
 
