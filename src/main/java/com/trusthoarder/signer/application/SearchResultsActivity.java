@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.trusthoarder.signer.R;
 import com.trusthoarder.signer.domain.KeyRepository;
-import com.trusthoarder.signer.domain.PGPKey;
+import com.trusthoarder.signer.domain.PublicKeyMeta;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 import com.trusthoarder.signer.infrastructure.ui.BasicAdapter;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -38,24 +38,24 @@ public class SearchResultsActivity extends ListActivity
 
     private void loadSearchResults( final String searchString )
     {
-        new SafeAsyncTask<List<PGPKey>>()
+        new SafeAsyncTask<List<PublicKeyMeta>>()
         {
             @Override
-            public List<PGPKey> call() throws Exception
+            public List<PublicKeyMeta> call() throws Exception
             {
                 return keys.find( searchString );
             }
 
             @Override
-            protected void onSuccess( List<PGPKey> pgpKeys ) throws Exception
+            protected void onSuccess( List<PublicKeyMeta> pgpKeys ) throws Exception
             {
-                ListAdapter adapter = new BasicAdapter<PGPKey>( R.layout.search_result, pgpKeys )
+                ListAdapter adapter = new BasicAdapter<PublicKeyMeta>( R.layout.search_result, pgpKeys )
                 {
                     @Override
-                    protected void render( PGPKey item, View view )
+                    protected void render( PublicKeyMeta item, View view )
                     {
-                        ((TextView) view.findViewById( R.id.keyid )).setText( item.keyId() );
-                        ((TextView) view.findViewById( R.id.uid )).setText( item.uids().iterator().next().uidString() );
+                        ((TextView) view.findViewById( R.id.keyid )).setText( item.keyIdString() );
+                        ((TextView) view.findViewById( R.id.uid )).setText( item.friendlyName() );
                     }
                 };
 
@@ -74,7 +74,7 @@ public class SearchResultsActivity extends ListActivity
     @Override
     protected void onListItemClick( ListView l, View v, int position, long id )
     {
-        PGPKey item = (PGPKey) getListView().getItemAtPosition( position );
+        PublicKeyMeta item = (PublicKeyMeta) getListView().getItemAtPosition( position );
 
         Intent intent = new Intent( this, KeyActivity.class );
         intent.putExtra( KEYID, item.keyId() );
