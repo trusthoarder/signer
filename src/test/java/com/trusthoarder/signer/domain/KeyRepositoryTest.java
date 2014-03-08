@@ -14,7 +14,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class KeyRepositoryIT
+public class KeyRepositoryTest
 {
 
     @Test

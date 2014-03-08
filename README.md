@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/trusthoarder/signer.png?branch=master)](https://travis-ci.org/trusthoarder/signer)
-
 # Signer
 
 1. If the user has a verified public key, go to (8).
