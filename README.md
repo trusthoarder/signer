@@ -28,7 +28,8 @@
 
 ## Building & Testing
 
-Signer is built using the Maven build system. To build the distributable .apk:
+Signer is built using the Maven build system, version 3.1.1 or higher.
+To build the distributable .apk:
 
     mvn clean package
 
@@ -37,3 +38,17 @@ The signer-<VERSION>.apk will be available under target/ directory.
 To run unit and integration tests:
 
     mvn clean verify
+
+This depends on the `ANDROID_HOME` and `JAVA_HOME` variables being set.
+For example:
+
+    export ANDROID_HOME=$HOME/adt-bundle-linux-x86_64-20131030/sdk
+    export JAVA_HOME=/usr/lib/jvm/default-java
+
+The `platform-tools` and `tools` directories must be in your path:
+
+    export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+
+This uses [maven-android-plugin][].
+
+[maven-android-plugin]: https://code.google.com/p/maven-android-plugin/wiki/GettingStarted
