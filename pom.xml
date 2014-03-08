@@ -118,12 +118,6 @@
       <version>1.9.5</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   
   <build>
@@ -136,12 +130,13 @@
           <extensions>true</extensions>
           <configuration>
             <sdk>
-              <platform>16</platform>
+              <platform>19</platform>
             </sdk>
             <!--<undeployBeforeDeploy>true</undeployBeforeDeploy>-->
             <proguard>
-              <skip>false</skip>
-              <config>../proguard.cfg</config>
+              <!-- Turn code obfuscation on/off, off for now, I don't think we want this. -->
+              <skip>true</skip>
+              <config>proguard.cfg</config>
             </proguard>
           </configuration>
         </plugin>
@@ -160,11 +155,23 @@
         </dependencies>
       </plugin>
       <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.16</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
     </plugins>

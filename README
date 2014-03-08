@@ -25,3 +25,17 @@ Security
 - List of keys to sign stored on device, encrypted, signed.
 - HKP is sent over SSL.
 - UI lock with PIN.
+
+
+Building & Testing
+------------------
+
+Signer is built using the Maven build system. To build the distributable .apk:
+
+    mvn clean package
+
+The signer-<VERSION>.apk will be available under target/ directory.
+
+To run unit and integration tests:
+
+    mvn clean verify
