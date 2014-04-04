@@ -36,7 +36,7 @@ public class KeyServer
     this.client = client;
   }
 
-  public Optional<PublicKey> get( String keyIdOrFingerprint ) throws IOException, URISyntaxException {
+  public Optional<SpongyBackedKey> get( String keyIdOrFingerprint ) throws IOException, URISyntaxException {
     HttpGet req = new HttpGet();
     req.setURI( new URI( String.format( getURI, encode( keyIdOrFingerprint ) ) ) );
 
@@ -46,7 +46,7 @@ public class KeyServer
         PGPUtil.getDecoderStream( response.getEntity().getContent() ));
     for(Object obj = factory.nextObject(); obj != null; obj = factory.nextObject()) {
       if(obj instanceof PGPPublicKeyRing ) {
-        return some( new PublicKey( (PGPPublicKeyRing) obj ) );
+        return some( new SpongyBackedKey( (PGPPublicKeyRing) obj ) );
       }
     }
 

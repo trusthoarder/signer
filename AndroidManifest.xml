@@ -28,5 +28,11 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".application.DashboardActivity"
+              android:label="@string/dashboard_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+
   </application>
 </manifest>

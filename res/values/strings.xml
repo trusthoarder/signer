@@ -7,4 +7,5 @@
   <string name="search_string">Search for a key</string>
   <string name="approve">Approve</string>
   <string name="key_title">Confirm key</string>
+  <string name="dashboard_title">Signer</string>
 </resources>

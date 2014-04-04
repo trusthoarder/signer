@@ -17,7 +17,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.trusthoarder.signer.R;
 import com.trusthoarder.signer.domain.Key;
 import com.trusthoarder.signer.domain.KeyServer;
-import com.trusthoarder.signer.domain.PublicKey;
+import com.trusthoarder.signer.domain.SpongyBackedKey;
 import com.trusthoarder.signer.domain.UserKeys;
 import com.trusthoarder.signer.domain.Database;
 import com.trusthoarder.signer.infrastructure.Optional;
@@ -83,14 +83,14 @@ public class AcceptKeyActivity extends Activity {
   }
 
   private void fillInKeyDetails(final String keyId) {
-    new SafeAsyncTask<Optional<PublicKey>>() {
+    new SafeAsyncTask<Optional<SpongyBackedKey>>() {
       @Override
-      public Optional<PublicKey> call() throws Exception {
+      public Optional<SpongyBackedKey> call() throws Exception {
         return keyServer.get( "0x" + keyId );
       }
 
       @Override
-      protected void onSuccess( Optional<PublicKey> potentialKey ) throws Exception {
+      protected void onSuccess( Optional<SpongyBackedKey> potentialKey ) throws Exception {
         if (potentialKey.isPresent()) {
           Key pgpKey = potentialKey.get();
           Key formattedKey = new KeyFormatter(pgpKey);
