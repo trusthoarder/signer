@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.trusthoarder.signer.R;
-import com.trusthoarder.signer.domain.KeyRepository;
+import com.trusthoarder.signer.domain.KeyServer;
 import com.trusthoarder.signer.domain.PublicKeyMeta;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 import com.trusthoarder.signer.infrastructure.ui.BasicAdapter;
@@ -20,7 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class SearchResultsActivity extends ListActivity
 {
     public final static String KEYID = "com.trusthoarder.signer.KEYID";
-    private final KeyRepository keys = new KeyRepository(
+    private final KeyServer keys = new KeyServer(
         "http://pgp.mit.edu", new DefaultHttpClient() );
 
     @Override
@@ -29,7 +29,7 @@ public class SearchResultsActivity extends ListActivity
         super.onCreate( savedInstanceState );
 
         Intent intent = getIntent();
-        final String searchString = intent.getStringExtra( SigningActivity.SEARCH_STRING );
+        final String searchString = intent.getStringExtra( SetupActivity.SEARCH_STRING );
 
         setContentView( R.layout.search_results );
         loadSearchResults( searchString );
@@ -76,7 +76,7 @@ public class SearchResultsActivity extends ListActivity
     {
         PublicKeyMeta item = (PublicKeyMeta) getListView().getItemAtPosition( position );
 
-        Intent intent = new Intent( this, KeyActivity.class );
+        Intent intent = new Intent( this, AcceptKeyActivity.class );
         intent.putExtra( KEYID, item.keyIdString() );
 
         startActivity( intent );

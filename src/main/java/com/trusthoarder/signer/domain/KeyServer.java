@@ -20,7 +20,7 @@ import static com.trusthoarder.signer.infrastructure.Optional.none;
 import static com.trusthoarder.signer.infrastructure.Optional.some;
 import static java.net.URLEncoder.encode;
 
-public class KeyRepository
+public class KeyServer
 {
   static {
     Security.insertProviderAt( new org.spongycastle.jce.provider.BouncyCastleProvider(), 1 );
@@ -30,7 +30,7 @@ public class KeyRepository
   private final String getURI;
   private final String listURI;
 
-  public KeyRepository( String keyServer, HttpClient client ) {
+  public KeyServer( String keyServer, HttpClient client ) {
     this.getURI = keyServer + "/pks/lookup?search=%s&op=get&options=mr&fingerprint=on";
     this.listURI = keyServer + "/pks/lookup?search=%s&op=vindex&options=mr";
     this.client = client;

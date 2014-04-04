@@ -14,7 +14,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class KeyRepositoryTest {
+public class KeyServerTest
+{
 
   private final HttpClient http = mock( HttpClient.class );
   private final HttpResponse response = mock( HttpResponse.class );
@@ -27,7 +28,7 @@ public class KeyRepositoryTest {
     when( response.getEntity() ).thenReturn( responseContent );
     when( responseContent.getContent() ).thenReturn( getClass().getResource( "/twokeys.pgp" ).openStream() );
 
-    KeyRepository repo = new KeyRepository( "doesntmatter", http );
+    KeyServer repo = new KeyServer( "doesntmatter", http );
 
     // When
     PublicKey result = repo.get( "something" ).get();
@@ -44,7 +45,7 @@ public class KeyRepositoryTest {
     when(response.getEntity()).thenReturn( responseContent );
     when(responseContent.getContent()).thenReturn( new ByteArrayInputStream( MOCK_DATA.getBytes() ) );
 
-    KeyRepository repo = new KeyRepository("doesntmatter", http );
+    KeyServer repo = new KeyServer("doesntmatter", http );
 
     // When
     List<PublicKeyMeta> result = repo.find( "something" );

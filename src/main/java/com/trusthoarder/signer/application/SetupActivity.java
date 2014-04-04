@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.widget.EditText;
 import com.trusthoarder.signer.R;
 
-public class SigningActivity extends Activity {
+public class SetupActivity extends Activity {
   public final static String SEARCH_STRING = "com.trusthoarder.signer.SEARCH_STRING";
+
+
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
