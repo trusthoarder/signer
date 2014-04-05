@@ -111,7 +111,7 @@ public class DashboardActivity extends Activity {
       return;
     }
 
-    Log.e("signer", "Don't know how to handle result: " + requestCode);
+    Log.e( "signer", "Don't know how to handle result: " + requestCode );
   }
 
   private void runKeyVerificationTutorial( String keyid ) {
@@ -123,5 +123,28 @@ public class DashboardActivity extends Activity {
     {
       Log.e( "signer", "A", e );
     }
+  }
+
+  public void onSignOutClicked( View view ) {
+    new SafeAsyncTask<Void>(  ){
+      @Override
+      public Void call() throws Exception {
+        new UserKeys( db ).deleteUserKey();
+        return null;
+      }
+
+      @Override
+      protected void onSuccess( Void ignore ) throws Exception {
+        startActivity(new Intent(DashboardActivity.this, SetupActivity.class));
+        finish();
+      }
+
+      @Override
+      protected void onException( Exception e ) throws RuntimeException {
+        Log.e("signer", "Failed to sign out.", e);
+        Toast.makeText( DashboardActivity.this,
+          "Failed to sign out: " + e.getMessage(), Toast.LENGTH_LONG ).show();
+      }
+    }.execute();
   }
 }

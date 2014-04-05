@@ -14,4 +14,5 @@
   <string name="sign">Yes, sign this key</string>
   <string name="dont_sign">No, don\'t sign this key</string>
   <string name="verification_title">Verification</string>
+  <string name="sign_out">Change my key</string>
 </resources>

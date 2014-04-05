@@ -24,7 +24,7 @@ public class UserKeys {
       db.insert( user_keys_table, contentValuesFor( key ) );
     }
     else {
-      db.delete( user_keys_table, "1=1", new String[]{} );
+      deleteUserKey();
       db.insert( user_keys_table, contentValuesFor( key ) );
     }
   }
@@ -50,6 +50,10 @@ public class UserKeys {
     else {
       throw new IllegalStateException( "Should never have more than one user key at a time." );
     }
+  }
+
+  public void deleteUserKey() {
+    db.delete( user_keys_table, "1=1", new String[]{} );
   }
 
   private ContentValues contentValuesFor( PublicKey key ) {
