@@ -27,4 +27,34 @@
       android:layout_marginTop="16dp"
       android:ems="10" />
 
+  <Button
+      android:id="@+id/scanButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="8dp"
+      android:onClick="onScanClicked"
+      android:text="@string/scanQR" />
+
+  <EditText
+      android:id="@+id/searchString"
+      android:hint="@string/search_string"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="16dp"
+      android:ems="10" />
+
+  <Button
+      android:id="@+id/search_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="8dp"
+      android:onClick="onSearchClicked"
+      android:text="@string/search" />
+
 </LinearLayout>

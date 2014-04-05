@@ -6,7 +6,7 @@
     >
 
 <EditText
-    android:id="@+id/search_string"
+    android:id="@+id/searchString"
     android:hint="@string/search_string"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

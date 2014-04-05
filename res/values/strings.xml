@@ -8,4 +8,6 @@
   <string name="approve">Approve</string>
   <string name="key_title">Confirm key</string>
   <string name="dashboard_title">Signer</string>
+  <string name="scanQR">Scan a key</string>
+  <string name="or_find_key">or find key</string>
 </resources>

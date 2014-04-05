@@ -12,10 +12,13 @@ import com.trusthoarder.signer.domain.Database;
 import com.trusthoarder.signer.domain.UserKeys;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 
-public class SetupActivity extends Activity {
-  public final static String SEARCH_STRING = "com.trusthoarder.signer.SEARCH_STRING";
-  private Database db;
+import static com.trusthoarder.signer.application.SearchResultsActivity.KEYID;
+import static com.trusthoarder.signer.application.SearchResultsActivity.SEARCH_STRING;
 
+public class SetupActivity extends Activity {
+
+  private static final int SEARCH_REQUEST = 1;
+  private Database db;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,24 @@ public class SetupActivity extends Activity {
   public void search(View view) {
     Intent intent = new Intent(this, SearchResultsActivity.class);
 
-    EditText editText = (EditText) findViewById(R.id.search_string);
+    EditText editText = (EditText) findViewById(R.id.searchString );
     String message = editText.getText().toString();
-    intent.putExtra(SEARCH_STRING, message);
+    intent.putExtra( SEARCH_STRING, message);
 
-    startActivity(intent);
+    startActivityForResult( intent, SEARCH_REQUEST );
+  }
+
+  @Override
+  protected void onActivityResult( int requestCode, int resultCode, Intent data ) {
+    if(resultCode == RESULT_OK) {
+      switch(requestCode) {
+        case SEARCH_REQUEST:
+          Intent startAccept = new Intent( this, AcceptKeyActivity.class );
+          startAccept.putExtra( KEYID, data.getStringExtra( KEYID ) );
+          startActivity( startAccept );
+          break;
+      }
+    }
   }
 
   @Override
