@@ -10,4 +10,8 @@
   <string name="dashboard_title">Signer</string>
   <string name="scanQR">Scan a key</string>
   <string name="or_find_key">or find key</string>
+  <string name="is_this_key_legit">Do you want to sign this key?</string>
+  <string name="sign">Yes, sign this key</string>
+  <string name="dont_sign">No, don\'t sign this key</string>
+  <string name="verification_title">Verification</string>
 </resources>

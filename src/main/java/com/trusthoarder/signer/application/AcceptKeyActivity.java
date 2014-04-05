@@ -83,7 +83,7 @@ public class AcceptKeyActivity extends Activity {
     new SafeAsyncTask<Optional<PublicKey>>() {
       @Override
       public Optional<PublicKey> call() throws Exception {
-        return keyServer.get( "0x" + keyId );
+        return keyServer.get( keyId );
       }
 
       @Override

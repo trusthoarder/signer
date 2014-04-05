@@ -13,6 +13,7 @@ import com.trusthoarder.signer.infrastructure.Optional;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import static com.trusthoarder.signer.infrastructure.Optional.none;
 import static com.trusthoarder.signer.infrastructure.Optional.some;
@@ -28,6 +29,10 @@ public class KeyServer
   private final String getURI;
   private final String listURI;
 
+  public KeyServer( ) {
+    this( "http://pgp.mit.edu", new DefaultHttpClient() );
+  }
+
   public KeyServer( String keyServer, HttpClient client ) {
     this.getURI = keyServer + "/pks/lookup?search=%s&op=get&options=mr&fingerprint=on";
     this.listURI = keyServer + "/pks/lookup?search=%s&op=vindex&options=mr";
@@ -35,6 +40,11 @@ public class KeyServer
   }
 
   public Optional<PublicKey> get( String keyIdOrFingerprint ) throws IOException, URISyntaxException {
+    if(!keyIdOrFingerprint.startsWith( "0x" ))
+    {
+      keyIdOrFingerprint = "0x" + keyIdOrFingerprint;
+    }
+
     HttpGet req = new HttpGet();
     req.setURI( new URI( String.format( getURI, encode( keyIdOrFingerprint ) ) ) );
 
@@ -43,7 +53,7 @@ public class KeyServer
     try {
       return some( PublicKey.deserialize( response.getEntity().getContent() ) );
     } catch( IllegalArgumentException e) {
-      Log.w("signer", "Invalid key received from keyserver.");
+      Log.w("signer", "Invalid key received from keyserver.", e);
       return none();
     }
   }

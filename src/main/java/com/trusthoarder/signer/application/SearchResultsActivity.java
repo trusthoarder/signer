@@ -15,21 +15,18 @@ import com.trusthoarder.signer.domain.KeyServer;
 import com.trusthoarder.signer.domain.PublicKeyMeta;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 import com.trusthoarder.signer.infrastructure.ui.BasicAdapter;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 public class SearchResultsActivity extends ListActivity {
   public final static String SEARCH_STRING = "com.trusthoarder.signer.SEARCH_STRING";
 
   public final static String KEYID = "com.trusthoarder.signer.KEYID";
-  private final KeyServer keys = new KeyServer(
-    "http://pgp.mit.edu", new DefaultHttpClient() );
+  private final KeyServer keys = new KeyServer();
 
   @Override
   public void onCreate( Bundle savedInstanceState ) {
     super.onCreate( savedInstanceState );
 
-    Intent intent = getIntent();
-    final String searchString = intent.getStringExtra( SEARCH_STRING );
+    final String searchString = getIntent().getStringExtra( SEARCH_STRING );
 
     setContentView( R.layout.search_results );
     loadSearchResults( searchString );

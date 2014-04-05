@@ -33,6 +33,11 @@
       <intent-filter>
       </intent-filter>
     </activity>
+    <activity android:name=".application.VerificationProcessActivity"
+              android:label="@string/verification_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
 
   </application>
 </manifest>

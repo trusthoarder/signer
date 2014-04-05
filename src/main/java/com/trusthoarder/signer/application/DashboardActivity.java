@@ -17,6 +17,7 @@ import com.trusthoarder.signer.infrastructure.Optional;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 
 import static com.trusthoarder.signer.application.FingerprintFormatter.humanReadableFingerprint;
+import static com.trusthoarder.signer.application.SearchResultsActivity.KEYID;
 import static com.trusthoarder.signer.application.SearchResultsActivity.SEARCH_STRING;
 import static com.trusthoarder.signer.infrastructure.ui.QRCode.buildQRCode;
 
@@ -24,6 +25,7 @@ public class DashboardActivity extends Activity {
 
   private static final int QR_SCAN_REQUEST = 1;
   private static final int MANUAL_SEARCH_REQUEST = 2;
+  private static final int VERIFICATION_TUTORIAL_REQUEST = 3;
 
   private Database db;
   private TextView keyIdText;
@@ -94,17 +96,32 @@ public class DashboardActivity extends Activity {
     if (resultCode == RESULT_OK) {
       switch ( requestCode ) {
         case QR_SCAN_REQUEST:
-          String contents = intent.getStringExtra("SCAN_RESULT");
-          Toast.makeText( this, "You scanned: " + contents, Toast.LENGTH_LONG).show();
+          runKeyVerificationTutorial( intent.getStringExtra( "SCAN_RESULT" ) );
           return;
         case MANUAL_SEARCH_REQUEST:
+          runKeyVerificationTutorial( intent.getStringExtra( KEYID ) );
+          return;
+        case VERIFICATION_TUTORIAL_REQUEST:
+          // Nothing to do, just show the dashboard
           return;
       }
     } else if (resultCode == RESULT_CANCELED) {
+      Log.w( "signer", requestCode + ", " + intent );
       Toast.makeText( this, "Scan was Cancelled!", Toast.LENGTH_LONG).show();
       return;
     }
 
     Log.e("signer", "Don't know how to handle result: " + requestCode);
+  }
+
+  private void runKeyVerificationTutorial( String keyid ) {
+    try {
+      Intent intent = new Intent( this, VerificationProcessActivity.class );
+      intent.putExtra( VerificationProcessActivity.KEYID, keyid );
+      startActivityForResult( intent, VERIFICATION_TUTORIAL_REQUEST );
+    } catch(Exception e)
+    {
+      Log.e( "signer", "A", e );
+    }
   }
 }
