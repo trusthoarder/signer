@@ -2,27 +2,23 @@ package com.trusthoarder.signer.application;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.trusthoarder.signer.R;
-import com.trusthoarder.signer.domain.Key;
-import com.trusthoarder.signer.domain.KeyServer;
-import com.trusthoarder.signer.domain.SpongyBackedKey;
-import com.trusthoarder.signer.domain.UserKeys;
 import com.trusthoarder.signer.domain.Database;
+import com.trusthoarder.signer.domain.KeyServer;
+import com.trusthoarder.signer.domain.PublicKey;
+import com.trusthoarder.signer.domain.UserKeys;
 import com.trusthoarder.signer.infrastructure.Optional;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import static com.trusthoarder.signer.application.FingerprintFormatter.humanReadableFingerprint;
+import static com.trusthoarder.signer.infrastructure.ui.QRCode.buildQRCode;
 
 public class AcceptKeyActivity extends Activity {
 
@@ -32,7 +28,7 @@ public class AcceptKeyActivity extends Activity {
   private TextView fingerprintTextView;
   private ImageView qrCodeIV;
 
-  private Key currentKey;
+  private PublicKey currentKey;
   private Database db;
 
   @Override
@@ -83,23 +79,22 @@ public class AcceptKeyActivity extends Activity {
   }
 
   private void fillInKeyDetails(final String keyId) {
-    new SafeAsyncTask<Optional<SpongyBackedKey>>() {
+    new SafeAsyncTask<Optional<PublicKey>>() {
       @Override
-      public Optional<SpongyBackedKey> call() throws Exception {
+      public Optional<PublicKey> call() throws Exception {
         return keyServer.get( "0x" + keyId );
       }
 
       @Override
-      protected void onSuccess( Optional<SpongyBackedKey> potentialKey ) throws Exception {
+      protected void onSuccess( Optional<PublicKey> potentialKey ) throws Exception {
         if (potentialKey.isPresent()) {
-          Key pgpKey = potentialKey.get();
-          Key formattedKey = new KeyFormatter(pgpKey);
+          PublicKey key = potentialKey.get();
 
-          keyIdTextView.setText(formattedKey.keyIdString());
-          qrCodeIV.setImageBitmap(buildQRCode(pgpKey.fingerprint()));
-          fingerprintTextView.setText(formattedKey.fingerprint());
+          keyIdTextView.setText( key.keyIdString() );
+          qrCodeIV.setImageBitmap( buildQRCode( AcceptKeyActivity.this, humanReadableFingerprint( key ) ) );
+          fingerprintTextView.setText( key.fingerprint() );
 
-          currentKey = pgpKey;
+          currentKey = key;
         } else {
           Toast.makeText( AcceptKeyActivity.this, "Could not find the key",
               Toast.LENGTH_LONG ).show();
@@ -111,26 +106,6 @@ public class AcceptKeyActivity extends Activity {
         Toast.makeText( AcceptKeyActivity.this,
             "Failed to load keys from server: " + e.getMessage(),
             Toast.LENGTH_LONG ).show();
-      }
-
-      private Bitmap buildQRCode(String message) {
-        int width = 200, height = 200;
-        QRCodeWriter writer = new QRCodeWriter();
-        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-
-        try {
-          BitMatrix output = writer.encode(
-              message, BarcodeFormat.valueOf("QR_CODE"), width, height);
-
-          for (int x = 0; x < width; x++)
-            for (int y = 0; y < height; y++)
-              bmp.setPixel(x, y, output.get(x,y) ? Color.BLACK : Color.WHITE);
-
-        } catch (WriterException e) {
-          Toast.makeText(AcceptKeyActivity.this, e.getMessage(), Toast.LENGTH_LONG);
-        }
-
-        return bmp;
       }
 
     }.execute();

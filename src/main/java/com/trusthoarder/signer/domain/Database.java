@@ -17,6 +17,7 @@ public class Database extends SQLiteOpenHelper
     public static String user_keys_id          = "_id";
     public static String user_keys_fingerprint = "fingerprint";
     public static String user_keys_keyid       = "keyid";
+    public static String user_keys_key         = "key";
   }
 
   public Database( Context context ) {
@@ -28,7 +29,8 @@ public class Database extends SQLiteOpenHelper
     db.execSQL( "create table " + Schema.user_keys_table + "("
       + Schema.user_keys_id + " integer primary key autoincrement, "
       + Schema.user_keys_keyid + " text not null, "
-      + Schema.user_keys_fingerprint + " text not null);");
+      + Schema.user_keys_fingerprint + " text not null, "
+      + Schema.user_keys_key + " blob);");
   }
 
   @Override

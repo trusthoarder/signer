@@ -27,13 +27,10 @@ public class SetupActivity extends Activity {
       public Object call() throws Exception {
         UserKeys userKeys = new UserKeys( db );
 
-        Log.i( "signer", "Picking the thing." );
         if(userKeys.isSetup()) {
-          Log.i( "signer", "Picked user has signed up" );
           startActivity( new Intent(SetupActivity.this, DashboardActivity.class) );
         }
         else {
-          Log.i( "signer", "Picked user needs to sign up" );
           setContentView( R.layout.search );
         }
 

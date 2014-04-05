@@ -8,13 +8,11 @@ import java.net.URISyntaxException;
 import java.security.Security;
 import java.util.List;
 
+import android.util.Log;
 import com.trusthoarder.signer.infrastructure.Optional;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.spongycastle.openpgp.PGPObjectFactory;
-import org.spongycastle.openpgp.PGPPublicKeyRing;
-import org.spongycastle.openpgp.PGPUtil;
 
 import static com.trusthoarder.signer.infrastructure.Optional.none;
 import static com.trusthoarder.signer.infrastructure.Optional.some;
@@ -36,25 +34,21 @@ public class KeyServer
     this.client = client;
   }
 
-  public Optional<SpongyBackedKey> get( String keyIdOrFingerprint ) throws IOException, URISyntaxException {
+  public Optional<PublicKey> get( String keyIdOrFingerprint ) throws IOException, URISyntaxException {
     HttpGet req = new HttpGet();
     req.setURI( new URI( String.format( getURI, encode( keyIdOrFingerprint ) ) ) );
 
     HttpResponse response = client.execute( req );
 
-    PGPObjectFactory factory = new PGPObjectFactory(
-        PGPUtil.getDecoderStream( response.getEntity().getContent() ));
-    for(Object obj = factory.nextObject(); obj != null; obj = factory.nextObject()) {
-      if(obj instanceof PGPPublicKeyRing ) {
-        return some( new SpongyBackedKey( (PGPPublicKeyRing) obj ) );
-      }
+    try {
+      return some( PublicKey.deserialize( response.getEntity().getContent() ) );
+    } catch( IllegalArgumentException e) {
+      Log.w("signer", "Invalid key received from keyserver.");
+      return none();
     }
-
-    return none();
   }
 
-  public List<PublicKeyMeta> find( String searchString ) throws IOException, URISyntaxException
-  {
+  public List<PublicKeyMeta> find( String searchString ) throws IOException, URISyntaxException {
     HttpGet req = new HttpGet();
     req.setURI( new URI( String.format( listURI, encode( searchString ))) );
     HttpResponse response = client.execute( req );

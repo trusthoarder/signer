@@ -31,7 +31,7 @@ public class KeyServerTest
     KeyServer repo = new KeyServer( "doesntmatter", http );
 
     // When
-    SpongyBackedKey result = repo.get( "something" ).get();
+    PublicKey result = repo.get( "something" ).get();
 
     // Then
     assertThat( result.fingerprint(), equalTo( "C039183BDF5F3B0F479F6FE386C3657C10A2B20C" ) );

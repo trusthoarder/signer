@@ -6,7 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.trusthoarder.signer.R;
 import com.trusthoarder.signer.domain.Database;
-import com.trusthoarder.signer.domain.Key;
+import com.trusthoarder.signer.domain.PublicKey;
 import com.trusthoarder.signer.domain.UserKeys;
 import com.trusthoarder.signer.infrastructure.Optional;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
@@ -28,7 +28,7 @@ public class DashboardActivity extends Activity {
       public Object call() throws Exception {
         UserKeys userKeys = new UserKeys( db );
 
-        Optional<Key> userKey = userKeys.userKey();
+        Optional<PublicKey> userKey = userKeys.userKey();
 
         if(userKey.isPresent()) {
           keyIdText.setText( userKey.get().keyIdString() );
