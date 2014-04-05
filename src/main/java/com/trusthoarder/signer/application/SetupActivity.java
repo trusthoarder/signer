@@ -22,19 +22,20 @@ public class SetupActivity extends Activity {
     super.onCreate(savedInstanceState);
     db = new Database( this );
 
-    new SafeAsyncTask<Object>(){
+    new SafeAsyncTask<Boolean>(){
       @Override
-      public Object call() throws Exception {
-        UserKeys userKeys = new UserKeys( db );
+      public Boolean call() throws Exception {
+        return new UserKeys( db ).isSetup();
+      }
 
-        if(userKeys.isSetup()) {
+      @Override
+      protected void onSuccess( Boolean isSetup ) throws Exception {
+        if(isSetup) {
           startActivity( new Intent(SetupActivity.this, DashboardActivity.class) );
         }
         else {
           setContentView( R.layout.search );
         }
-
-        return null;
       }
 
       @Override

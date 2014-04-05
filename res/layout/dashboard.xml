@@ -5,9 +5,26 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="New Text"
+      android:text="Your key is:"
+      android:id="@+id/title"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:id="@+id/keyid"/>
+
+  <ImageView
+      android:id="@+id/qrCode"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="16dp"
+      android:ems="10" />
+
 </LinearLayout>

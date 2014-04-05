@@ -38,12 +38,15 @@ public class Database extends SQLiteOpenHelper
     // Do any upgrade for database here
   }
 
-  public Cursor query(String table, String[] columns, String where, String[] parameters, Integer limit)
-  {
+  public Cursor query(String table, String[] columns, String where, String[] parameters, Integer limit) {
     return getReadableDatabase().query( table, columns, where, parameters, null, null, null, limit.toString() );
   }
 
   public void insert( String tableName, ContentValues values ) {
     getWritableDatabase().insert( tableName, null, values );
+  }
+
+  public void delete(String table, String where, String[] parameters) {
+    getWritableDatabase().delete( table, where, parameters );
   }
 }

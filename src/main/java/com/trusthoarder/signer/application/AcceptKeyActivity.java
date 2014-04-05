@@ -67,6 +67,7 @@ public class AcceptKeyActivity extends Activity {
         TextView message = new TextView(AcceptKeyActivity.this);
         message.setText( "Approved" );
         setContentView( message );
+        startActivity( new Intent(AcceptKeyActivity.this, DashboardActivity.class) );
       }
 
       @Override

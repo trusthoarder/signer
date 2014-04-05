@@ -24,7 +24,8 @@ public class UserKeys {
       db.insert( user_keys_table, contentValuesFor( key ) );
     }
     else {
-      throw new UnsupportedOperationException("Sorry.");
+      db.delete( user_keys_table, "1=1", new String[]{} );
+      db.insert( user_keys_table, contentValuesFor( key ) );
     }
   }
 
