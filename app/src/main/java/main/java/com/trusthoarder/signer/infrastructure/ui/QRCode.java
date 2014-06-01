@@ -24,7 +24,7 @@ public class QRCode {
           bmp.setPixel(x, y, output.get(x,y) ? Color.BLACK : Color.WHITE);
 
     } catch (WriterException e) {
-      Toast.makeText( ctx, e.getMessage(), Toast.LENGTH_LONG );
+      Toast.makeText( ctx, e.getMessage(), Toast.LENGTH_LONG ).show();
     }
 
     return bmp;

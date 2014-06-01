@@ -14,6 +14,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    lintOptions {
+       disable 'InvalidPackage' // https://github.com/rtyley/spongycastle-old/issues/16 
+   }
 }
 
 repositories {

@@ -25,7 +25,8 @@
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       android:layout_marginTop="16dp"
-      android:ems="10" />
+      android:ems="10"
+      android:contentDescription="QR code of your fingerprint" />
 
   <Button
       android:id="@+id/scanButton"
