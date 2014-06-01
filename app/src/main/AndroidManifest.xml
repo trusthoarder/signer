@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.trusthoarder.signer"
+  android:versionCode="1"
+  android:versionName="1.0">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+
+    <activity android:name="main.java.com.trusthoarder.signer.application.SetupActivity"
+      android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <activity android:name="main.java.com.trusthoarder.signer.application.SearchResultsActivity"
+      android:label="@string/search_results_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+
+    <activity android:name="main.java.com.trusthoarder.signer.application.AcceptKeyActivity"
+      android:label="@string/key_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+
+    <activity android:name="main.java.com.trusthoarder.signer.application.DashboardActivity"
+              android:label="@string/dashboard_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+    <activity android:name="main.java.com.trusthoarder.signer.application.VerificationProcessActivity"
+              android:label="@string/verification_title">
+      <intent-filter>
+      </intent-filter>
+    </activity>
+
+  </application>
+
+    <supports-screens android:anyDensity="true" />
+
+    <uses-sdk android:minSdkVersion='10' />
+</manifest>
