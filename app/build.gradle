@@ -16,7 +16,7 @@ android {
     }
 
     lintOptions {
-       disable 'InvalidPackage' // https://github.com/rtyley/spongycastle-old/issues/16 
+       disable 'InvalidPackage' // https://github.com/rtyley/spongycastle-old/issues/16
    }
 }
 
