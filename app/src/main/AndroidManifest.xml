@@ -12,7 +12,7 @@
 
   <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:allowBackup="true">
 
-    <activity android:name="main.java.com.trusthoarder.signer.application.SetupActivity"
+    <activity android:name=".application.SetupActivity"
       android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -20,18 +20,18 @@
       </intent-filter>
     </activity>
 
-    <activity android:name="main.java.com.trusthoarder.signer.application.SearchResultsActivity"
+    <activity android:name=".application.SearchResultsActivity"
       android:label="@string/search_results_title">
     </activity>
 
-    <activity android:name="main.java.com.trusthoarder.signer.application.AcceptKeyActivity"
+    <activity android:name=".application.AcceptKeyActivity"
       android:label="@string/key_title">
     </activity>
 
-    <activity android:name="main.java.com.trusthoarder.signer.application.DashboardActivity"
+    <activity android:name=".application.DashboardActivity"
               android:label="@string/dashboard_title">
     </activity>
-    <activity android:name="main.java.com.trusthoarder.signer.application.VerificationProcessActivity"
+    <activity android:name=".application.VerificationProcessActivity"
               android:label="@string/verification_title">
     </activity>
 
