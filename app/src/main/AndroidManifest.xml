@@ -22,25 +22,17 @@
 
     <activity android:name="main.java.com.trusthoarder.signer.application.SearchResultsActivity"
       android:label="@string/search_results_title">
-      <intent-filter>
-      </intent-filter>
     </activity>
 
     <activity android:name="main.java.com.trusthoarder.signer.application.AcceptKeyActivity"
       android:label="@string/key_title">
-      <intent-filter>
-      </intent-filter>
     </activity>
 
     <activity android:name="main.java.com.trusthoarder.signer.application.DashboardActivity"
               android:label="@string/dashboard_title">
-      <intent-filter>
-      </intent-filter>
     </activity>
     <activity android:name="main.java.com.trusthoarder.signer.application.VerificationProcessActivity"
               android:label="@string/verification_title">
-      <intent-filter>
-      </intent-filter>
     </activity>
 
   </application>
