@@ -46,7 +46,9 @@ public class KeyServer
     }
 
     HttpGet req = new HttpGet();
-    req.setURI( new URI( String.format( getURI, encode( keyIdOrFingerprint ) ) ) );
+    URI uri = new URI( String.format( getURI, encode( keyIdOrFingerprint ) ) );
+    Log.i("signer", "Getting URI: " + uri);
+    req.setURI( uri );
 
     HttpResponse response = client.execute( req );
 
