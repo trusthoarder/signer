@@ -17,7 +17,6 @@ import com.trusthoarder.signer.infrastructure.Optional;
 import com.trusthoarder.signer.infrastructure.SafeAsyncTask;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import static com.trusthoarder.signer.application.FingerprintFormatter.humanReadableFingerprint;
 import static com.trusthoarder.signer.infrastructure.ui.QRCode.buildQRCode;
 
 public class AcceptKeyActivity extends Activity {
@@ -92,7 +91,7 @@ public class AcceptKeyActivity extends Activity {
           PublicKey key = potentialKey.get();
 
           keyIdTextView.setText( key.keyIdString() );
-          qrCodeIV.setImageBitmap( buildQRCode( AcceptKeyActivity.this, humanReadableFingerprint( key ) ) );
+          qrCodeIV.setImageBitmap( buildQRCode( AcceptKeyActivity.this, key.fingerprint() ) );
           fingerprintTextView.setText( key.fingerprint() );
 
           currentKey = key;

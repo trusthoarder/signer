@@ -53,7 +53,7 @@ public class DashboardActivity extends Activity {
         if(userKey.isPresent()) {
           PublicKey key = userKey.get();
           keyIdText.setText( key.keyIdString() );
-          qrCodeIV.setImageBitmap( buildQRCode( DashboardActivity.this, humanReadableFingerprint( key ) ) );
+          qrCodeIV.setImageBitmap( buildQRCode( DashboardActivity.this, key.fingerprint() ) );
         } else {
           new IllegalStateException( "There is no user key set up." );
         }
