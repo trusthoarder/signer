@@ -4,14 +4,35 @@ import java.io.IOException;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.trusthoarder.signer.infrastructure.Optional;
 
 import static com.trusthoarder.signer.domain.Database.Schema.user_keys_fingerprint;
 import static com.trusthoarder.signer.domain.Database.Schema.user_keys_key;
 import static com.trusthoarder.signer.domain.Database.Schema.user_keys_keyid;
 import static com.trusthoarder.signer.domain.Database.Schema.user_keys_table;
+import static com.trusthoarder.signer.domain.Database.Schema.verified_keys_fingerprint;
+import static com.trusthoarder.signer.domain.Database.Schema.verified_keys_key;
+import static com.trusthoarder.signer.domain.Database.Schema.verified_keys_keyid;
+import static com.trusthoarder.signer.domain.Database.Schema.verified_keys_state;
+import static com.trusthoarder.signer.domain.Database.Schema.verified_keys_table;
 
 public class UserKeys {
+
+  public enum VerifiedKeyState
+  {
+    /**
+     * First step - the key has been verified through the verification process, but is not
+     * yet signed.
+     */
+    VERIFIED,
+
+    /**
+     * The key has been signed by the user.
+     */
+    SIGNED
+  }
 
   private final Database db;
 
@@ -21,11 +42,11 @@ public class UserKeys {
 
   public void setUserKeyTo( PublicKey key ) {
     if(userKey().isPresent()) {
-      db.insert( user_keys_table, contentValuesFor( key ) );
+      db.insert( user_keys_table, userKeyContent(key) );
     }
     else {
       deleteUserKey();
-      db.insert( user_keys_table, contentValuesFor( key ) );
+      db.insert( user_keys_table, userKeyContent(key) );
     }
   }
 
@@ -56,11 +77,25 @@ public class UserKeys {
     db.delete( user_keys_table, "1=1", new String[]{} );
   }
 
-  private ContentValues contentValuesFor( PublicKey key ) {
+  public void addVerifiedKey(PublicKey publicKey) {
+    Log.i("signer", "Storing verified key.");
+    db.insert( verified_keys_table, verifiedKeyContent(publicKey, VerifiedKeyState.VERIFIED) );
+  }
+
+  private ContentValues userKeyContent(PublicKey key) {
     ContentValues toInsert = new ContentValues();
     toInsert.put( user_keys_fingerprint, key.fingerprint() );
     toInsert.put( user_keys_keyid, key.keyIdString() );
     toInsert.put( user_keys_key, key.serialize() );
+    return toInsert;
+  }
+
+  private ContentValues verifiedKeyContent(PublicKey key, VerifiedKeyState state) {
+    ContentValues toInsert = new ContentValues();
+    toInsert.put( verified_keys_fingerprint, key.fingerprint() );
+    toInsert.put( verified_keys_keyid, key.keyIdString() );
+    toInsert.put( verified_keys_key, key.serialize() );
+    toInsert.put( verified_keys_state, state.name() );
     return toInsert;
   }
 }

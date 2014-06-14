@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper
 {
   private final static String DATABASE_NAME = "signer.db";
-  private final static int DATABASE_VERSION = 1;
+  private final static int DATABASE_VERSION = 2;
 
   public static final class Schema
   {
@@ -18,6 +18,13 @@ public class Database extends SQLiteOpenHelper
     public static String user_keys_fingerprint = "fingerprint";
     public static String user_keys_keyid       = "keyid";
     public static String user_keys_key         = "key";
+
+    public static String verified_keys_table       = "verified_keys";
+    public static String verified_keys_id          = "_id";
+    public static String verified_keys_fingerprint = "fingerprint";
+    public static String verified_keys_keyid       = "keyid";
+    public static String verified_keys_key         = "key";
+    public static String verified_keys_state       = "state";
   }
 
   public Database( Context context ) {
@@ -34,8 +41,16 @@ public class Database extends SQLiteOpenHelper
   }
 
   @Override
-  public void onUpgrade( SQLiteDatabase db, int i, int i2 ) {
-    // Do any upgrade for database here
+  public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion ) {
+    if(oldVersion == 1 && newVersion == 2)
+    {
+      db.execSQL( "create table " + Schema.verified_keys_table + "("
+          + Schema.verified_keys_id + " integer primary key autoincrement, "
+          + Schema.verified_keys_keyid + " text not null, "
+          + Schema.verified_keys_fingerprint + " text not null, "
+          + Schema.verified_keys_state + " text not null, "
+          + Schema.verified_keys_key + " blob);");
+    }
   }
 
   public Cursor query(String table, String[] columns, String where, String[] parameters, Integer limit) {
